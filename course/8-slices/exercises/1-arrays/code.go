@@ -9,7 +9,8 @@ const (
 )
 
 func getMessageWithRetries() [3]string {
-	// ?
+	messages := [3]string{retry1, retry2, retry3}
+	return messages
 }
 
 // don't touch below this line
