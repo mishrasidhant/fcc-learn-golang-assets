@@ -5,7 +5,13 @@ import (
 )
 
 func maxMessages(thresh float64) int {
-	// ?
+	cost := 0.0
+	for i := 0; ; i++ {
+		cost += 1.0 + float64(i)*0.01
+		if cost >= thresh {
+			return i
+		}
+	}
 }
 
 // don't edit below this line
