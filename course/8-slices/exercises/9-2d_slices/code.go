@@ -3,7 +3,23 @@ package main
 import "fmt"
 
 func createMatrix(rows, cols int) [][]int {
-	// ?
+	/*
+		loop through number of rows
+			create a slice of int for each row
+			loop through number of columns
+				populate row slice in this loo
+			assign row slice to matrix here
+	*/
+	matrix := [][]int{}
+	for i := 0; i < rows; i++ {
+		row := []int{}
+		for j := 0; j < cols; j++ {
+			// matrix[i][j] = i * j
+			row = append(row, i*j)
+		}
+		matrix = append(matrix, row)
+	}
+	return matrix
 }
 
 // dont edit below this line

@@ -8,7 +8,23 @@ type cost struct {
 }
 
 func getCostsByDay(costs []cost) []float64 {
-	// ?
+	/*
+		Create a costs (0.0 filled) array of floats with 31 days (1 day for each input possible)
+		Loop through costs
+			Check for highest day count -> update if approprate
+			Update cost
+		Return slice of costs[:highestDayCount]
+	*/
+	totalDailyCosts := [31]float64{}
+	lastDay := 0
+	for i := 0; i < len(costs); i++ {
+		currentDay := costs[i].day
+		if currentDay > lastDay {
+			lastDay = currentDay
+		}
+		totalDailyCosts[currentDay] += costs[i].value
+	}
+	return totalDailyCosts[:lastDay+1]
 }
 
 // dont edit below this line
