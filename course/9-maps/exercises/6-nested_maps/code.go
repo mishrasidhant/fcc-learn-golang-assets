@@ -5,7 +5,18 @@ import (
 )
 
 func getNameCounts(names []string) map[rune]map[string]int {
-	// ?
+	nc := make(map[rune]map[string]int)
+	for _, name := range names {
+		nameInRunes := []rune(name)
+		if m, ok := nc[nameInRunes[0]]; ok {
+			m[name]++
+			continue
+		}
+		nc[nameInRunes[0]] = map[string]int{
+			name: 1,
+		}
+	}
+	return nc
 }
 
 // don't edit below this line
@@ -26,6 +37,7 @@ func main() {
 	test(getNames(200), 'P', "Philip")
 	test(getNames(250), 'B', "Bryant")
 	test(getNames(300), 'M', "Matthew")
+	// test(getNames(0), 'M', "Matthew")
 }
 
 func getNames(length int) []string {

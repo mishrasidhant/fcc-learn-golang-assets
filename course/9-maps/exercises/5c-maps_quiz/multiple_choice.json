@@ -1,7 +1,7 @@
 {
   "question": "A function can mutate the values stored in a map and those changes ____ the caller",
   "answers": [
-    "affect",
+    "affect", // <-
     "do not affect"
   ]
 }
