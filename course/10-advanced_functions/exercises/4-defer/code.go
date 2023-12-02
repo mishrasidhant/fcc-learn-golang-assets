@@ -12,15 +12,17 @@ const (
 )
 
 func logAndDelete(users map[string]user, name string) (log string) {
+	defer delete(users, name)
 	user, ok := users[name]
 	if !ok {
-		delete(users, name)
+		// delete(users, name)
 		return logNotFound
 	}
 	if user.admin {
+		// delete(users, name)
 		return logAdmin
 	}
-	delete(users, name)
+	// delete(users, name)
 	return logDeleted
 }
 
