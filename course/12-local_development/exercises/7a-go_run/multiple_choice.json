@@ -1,7 +1,7 @@
 {
   "question": "Which can 'go run' accept as arguments?",
   "answers": [
-    "Both",
+    "Both", // <- can also specify directory/import path. The idea is to complie and run a named main Go package
     "File names",
     "Package names"
   ]

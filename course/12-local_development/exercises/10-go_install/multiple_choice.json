@@ -1,7 +1,7 @@
 {
   "question": "What does 'go install' do?",
   "answers": [
-    "Compiles and installs the program locally",
+    "Compiles and installs the program locally",  // <-
     "Installs dependencies",
     "Saves local code to the remote source control provider"
   ]

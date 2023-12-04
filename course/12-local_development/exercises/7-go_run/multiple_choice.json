@@ -1,7 +1,7 @@
 {
   "question": "Does 'go run' build a production executable?",
   "answers": [
-    "No",
+    "No", // <- It's used to quicly compile and run a go package
     "Yes"
   ]
 }
