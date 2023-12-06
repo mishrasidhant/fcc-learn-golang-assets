@@ -1,7 +1,7 @@
 {
   "question": "How many readers can access a RWMutex at once?",
   "answers": [
-    "infinite",
+    "infinite", // <-
     "1",
     "0"
   ]

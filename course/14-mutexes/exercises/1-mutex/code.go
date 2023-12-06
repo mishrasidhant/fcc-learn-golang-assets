@@ -13,6 +13,8 @@ type safeCounter struct {
 }
 
 func (sc safeCounter) inc(key string) {
+	sc.mux.Lock()
+	defer sc.mux.Unlock()
 	sc.slowIncrement(key)
 }
 
