@@ -36,7 +36,7 @@ func waitForData() {
 
 func test() {
 	snapshotTicker := time.Tick(800 * time.Millisecond)
-	saveAfter := time.After(2800 * time.Millisecond)
+	saveAfter := time.After(4100 * time.Millisecond)
 	saveBackups(snapshotTicker, saveAfter)
 	fmt.Println("===========================")
 }

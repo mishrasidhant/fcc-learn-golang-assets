@@ -6,7 +6,24 @@ import (
 )
 
 func saveBackups(snapshotTicker, saveAfter <-chan time.Time) {
-	// ?
+	for {
+		select {
+		case _, ok := <-snapshotTicker:
+			if !ok {
+				return
+			}
+			takeSnapshot()
+		case _, ok := <-saveAfter:
+			if !ok {
+				return
+			}
+			saveSnapshot()
+			return
+		default:
+			waitForData()
+			time.Sleep(500 * time.Millisecond)
+		}
+	}
 }
 
 // TEST SUITE - Don't touch below this line

@@ -7,7 +7,20 @@ import (
 )
 
 func logMessages(chEmails, chSms chan string) {
-	// ?
+	for {
+		select {
+		case email, ok := <-chEmails:
+			if !ok {
+				return
+			}
+			logEmail(email)
+		case sms, ok := <-chSms:
+			if !ok {
+				return
+			}
+			logSms(sms)
+		}
+	}
 }
 
 // TEST SUITE - Don't touch below this line
@@ -57,8 +70,22 @@ func main() {
 			"Can you believe this song?",
 		},
 	)
+	test(
+		[]string{
+			"i'm a big fan",
+		},
+		[]string{
+			"What do you think of this song?",
+			"I hate this band",
+			"Can you believe this song?",
+		},
+	)
 }
 
+// In order to process two channels of varying lengths together you have to
+// handel each individually, doesn't make sense to design two queues of varying
+// lengths to use the same block of logic, seprate them out if they're not tightly
+// coupled
 func sendToLogger(sms, emails []string) (chSms, chEmails chan string) {
 	chSms = make(chan string)
 	chEmails = make(chan string)

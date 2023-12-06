@@ -8,20 +8,36 @@ import (
 func filterOldEmails(emails []email) {
 	isOldChan := make(chan bool)
 
-	for _, e := range emails {
-		if e.date.Before(time.Date(2020, 0, 0, 0, 0, 0, 0, time.UTC)) {
-			isOldChan <- true
-			continue
+	go func(some bool) {
+		// This print statement executes before any of the channels are received
+		// Sequentially this anonymous function *should* be executing immediately
+		fmt.Println(some)
+		for _, e := range emails {
+			if e.date.Before(time.Date(2020, 0, 0, 0, 0, 0, 0, time.UTC)) {
+				isOldChan <- true
+				continue
+			}
+			isOldChan <- false
 		}
-		isOldChan <- false
-	}
+	}(true)
 
-	isOld := <-isOldChan
-	fmt.Println("email 1 is old:", isOld)
-	isOld = <-isOldChan
-	fmt.Println("email 2 is old:", isOld)
-	isOld = <-isOldChan
-	fmt.Println("email 3 is old:", isOld)
+	go func(some bool) {
+		fmt.Println(some)
+		for i := range emails {
+			isOld := <-isOldChan
+			fmt.Println("email", i, "is old:", isOld)
+		}
+	}(false)
+
+	// isOld := <-isOldChan
+	// fmt.Println("email 1 is old:", isOld)
+	// isOld = <-isOldChan
+	// fmt.Println("email 2 is old:", isOld)
+	// isOld = <-isOldChan
+	// fmt.Println("email 3 is old:", isOld)
+	// Creating a 4th channel "receive" creates a deadlock
+	// isOld = <-isOldChan
+	// fmt.Println("email 4 is old:", isOld)
 }
 
 // TEST SUITE -- Don't touch below this line

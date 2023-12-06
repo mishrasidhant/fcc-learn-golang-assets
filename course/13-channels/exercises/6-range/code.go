@@ -6,7 +6,28 @@ import (
 )
 
 func concurrrentFib(n int) {
-	// ?
+	/*
+		1. Create a channel
+		2. Call fibonacchi in a go routine (concurrently)
+		3. Run a for loop n times that checks the channel and prints
+		return
+	*/
+	/*
+		ch := make(chan int, n)
+		go fibonacci(n, ch)
+		for i := 0; i < n; i++ {
+			fib, ok := <-ch
+			if !ok {
+				return
+			}
+			fmt.Println(fib)
+		}
+	*/
+	ch := make(chan int, n)
+	go fibonacci(n, ch)
+	for fibNum := range ch {
+		fmt.Println(fibNum)
+	}
 }
 
 // TEST SUITE - Don't touch below this line

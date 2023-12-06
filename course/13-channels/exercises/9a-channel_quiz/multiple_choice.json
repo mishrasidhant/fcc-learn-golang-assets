@@ -1,7 +1,7 @@
 {
   "question": "What happens when you send to a closed channel?",
   "answers": [
-    "Panic",
+    "Panic",  // <-
     "The sender will block forever",
     "The receiver will block forever"
   ]
